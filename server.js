@@ -1,27 +1,33 @@
-import express from "express";
-import dotenv from "dotenv";
-import ConnectionDB from "./config/db.js";
-import ReportRouter from "./routes/ReportRouter.js";
+import express from 'express';
+import dotenv from 'dotenv';
+import ConnectionDB from './config/db.js';
+import ReportRouter from './routes/reportRouter.js';
+import UserRouter from './routes/UserRouter.js';
+import { protect } from './middleware/authMiddleware.js';
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 
-// default route
-app.get("/", (req, res) => {
-  res.send("Hello World");
+// Default route
+app.get('/', (req, res) => {
+  res.send('Hello World');
 });
 
-// route
-app.use("/api/report/", ReportRouter);
+// User routes
+app.use('/api/users', UserRouter);
 
+// Report routes (protected)
+app.use('/api/report', protect, ReportRouter);
+
+// Database connection
 ConnectionDB();
 
-// port
-const port = process.env.PORT || 3000;  // memastikan default port 3000 jika process.env.PORT tidak diatur
+// Port
+const port = process.env.PORT || 3000;
 
-// server
+// Server
 app.listen(port, () => {
   console.log(`Server berjalan di http://localhost:${port}`);
 });
