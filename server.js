@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import ConnectionDB from './config/db.js';
-import ReportRouter from './routes/reportRouter.js';
+import ReportRouter from './routes/ReportRouter.js';
 import UserRouter from './routes/UserRouter.js';
 import { protect } from './middleware/authMiddleware.js';
 
