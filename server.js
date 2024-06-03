@@ -8,15 +8,20 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-//route
+// default route
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+// route
 app.use("/api/report/", ReportRouter);
 
 ConnectionDB();
 
-//port
-const port = process.env.port;
+// port
+const port = process.env.PORT || 3000;  // memastikan default port 3000 jika process.env.PORT tidak diatur
 
-//server
+// server
 app.listen(port, () => {
-  console.log(`server berjalan di http://localhost:${port}`);
+  console.log(`Server berjalan di http://localhost:${port}`);
 });
