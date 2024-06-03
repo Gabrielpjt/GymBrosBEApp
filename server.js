@@ -1,22 +1,22 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import ConnectionDB from './config/db.js'
-import ReportRouter from './routes/ReportRouter.js'
+import express from "express";
+import dotenv from "dotenv";
+import ConnectionDB from "./config/db.js";
+import ReportRouter from "./routes/ReportRouter.js";
 
-dotenv.config()
+dotenv.config();
 
 const app = express();
 app.use(express.json());
 
 //route
-app.use('/api/report/',ReportRouter)
+app.use("/api/report/", ReportRouter);
 
-ConnectionDB()
+ConnectionDB();
 
 //port
-const port = process.env.port
+const port = process.env.port;
 
 //server
 app.listen(port, () => {
-    console.log(`server berjalan di http://localhost:${port}`)
-})
+  console.log(`server berjalan di http://localhost:${port}`);
+});
