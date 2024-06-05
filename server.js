@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import ConnectionDB from './config/db.js';
 import ReportRouter from './routes/ReportRouter.js';
 import UserRouter from './routes/UserRouter.js';
+import ListUserRouter from './routes/ListUserRouter.js';
 import cors from 'cors';
 import { protect } from './middleware/authMiddleware.js';
 
@@ -23,6 +24,8 @@ app.use('/api/users', UserRouter);
 
 // Report routes (protected)
 app.use('/api/report', protect, ReportRouter);
+
+app.use('/api/listusers', ListUserRouter);
 
 // Database connection
 ConnectionDB();
