@@ -5,7 +5,7 @@ import ReportRouter from './routes/ReportRouter.js';
 import UserRouter from './routes/UserRouter.js';
 import ListUserRouter from './routes/ListUserRouter.js';
 import cors from 'cors';
-import { protect } from './middleware/authMiddleware.js';
+//import { protect } from './middleware/authMiddleware.js';
 
 dotenv.config();
 
@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 app.use('/api/users', UserRouter);
 
 // Report routes (protected)
-app.use('/api/report', protect, ReportRouter);
+app.use('/api/report', ReportRouter);
 
 app.use('/api/listusers', ListUserRouter);
 
